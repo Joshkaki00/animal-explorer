@@ -50,7 +50,8 @@ export default function AnimalListScreen() {
         data={animals}
         keyExtractor={(item, index) => `${item}-${index}`}
         contentContainerStyle={styles.listContent}
-        // TODO (Signpost 4): add pull-to-refresh using refreshing + onRefresh
+        refreshing={status === 'loading'}
+        onRefresh={() => dispatch(fetchAnimals())}
         renderItem={({ item }) => {
           const isFav = favorites.includes(item);
           return (

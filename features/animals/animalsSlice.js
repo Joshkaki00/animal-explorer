@@ -31,13 +31,16 @@ const animalsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchAnimals.pending, (state) => {
-        // TODO (Signpost 2): set status to 'loading' and clear error
+        state.status = 'loading';
+        state.error = null;
       })
       .addCase(fetchAnimals.fulfilled, (state, action) => {
-        // TODO (Signpost 2): set status to 'succeeded' and set animals = action.payload
+        state.status = 'succeeded';
+        state.animals = action.payload;
       })
       .addCase(fetchAnimals.rejected, (state, action) => {
-        // TODO (Signpost 2): set status to 'failed' and set error = action.error.message
+        state.status = 'failed';
+        state.error = action.error.message;
       });
   },
 });

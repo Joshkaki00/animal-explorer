@@ -8,12 +8,17 @@ import { fetchAnimals, addFavorite, removeFavorite } from '../features/animals/a
 export default function AnimalListScreen() {
   const dispatch = useDispatch();
   const { animals, favorites, status, error } = useSelector((state) => state.animals);
+  const isInitialMount = React.useRef(true);
 
   React.useEffect(() => {
     dispatch(fetchAnimals());
   }, [dispatch]);
 
   React.useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+      return; // Skip saving on first render
+    }
     AsyncStorage.setItem('favorites', JSON.stringify(favorites));
   }, [favorites]);
 

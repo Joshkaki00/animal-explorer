@@ -10,7 +10,7 @@ export default function AnimalListScreen() {
   const { animals, favorites, status, error } = useSelector((state) => state.animals);
 
   React.useEffect(() => {
-    // TODO (Signpost 3): dispatch(fetchAnimals())
+    dispatch(fetchAnimals());
   }, [dispatch]);
 
   React.useEffect(() => {

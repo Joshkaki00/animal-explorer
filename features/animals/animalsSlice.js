@@ -3,10 +3,9 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 export const fetchAnimals = createAsyncThunk(
   'animals/fetchAnimals',
   async () => {
-    // TODO (Signpost 2): fetch 10 random dog images and return an array of URLs
-    // API: https://dog.ceo/api/breeds/image/random/10
-    // Expected: return data.message
-    throw new Error('Not implemented');
+    const response = await fetch('https://dog.ceo/api/breeds/image/random/10');
+    const data = await response.json();
+    return data.message; // Returns array of image URLs
   }
 );
 
